@@ -1,8 +1,5 @@
 from cmu_graphics import *
 
-cpsList = [1,2]
-Label(int(sum(cpsList)),300,45, font ='orbitron',size = 15)
-
 app.background = 'lavender'
 ##timer stuff 
 app.stepsPerSecond = 1
@@ -33,8 +30,6 @@ Label('keeb tree price =', 265, 225 , font='orbitron', size = 15)
 
 gramaon = False
 keebon = False
-poop = 1
-fart = 0
 
 ##second upgrade the kebler factory
 keeble = Image( app.keebURL,220, 235,width=125, height=95)
@@ -43,23 +38,17 @@ keeble = Image( app.keebURL,220, 235,width=125, height=95)
 def onStep():
  
  if (keebon == True):
-  cLabel.value + keebprice.value// 8 + 1
+  cLabel.value += keebprice.value// 8 + 1
   
  if (gramaon == True):
-    cLabel.value + granprice.value//5 + 1
-    
-  
-
-
+    cLabel.value += granprice.value//5 + 1
 
 ## mandatory list
-upgradePriceList= []
+cpsList = []
 
 
-upgradePriceList.append(granprice.value)
 
-upgradePriceList.append(keebprice.value)
-
+amOfUp = Label(len(cpsList),140,45, font ='orbitron',size = 15)
   
 ##this is the mouse function
 
@@ -71,9 +60,11 @@ def onMousePress(mouseX,mouseY):
      gramaon = True
      cLabel.value -= granprice.value
      granprice.value += 2
+     cpsList.insert(1,1)
      
-
-     
+     for sum in cpsList:
+       
+       print("consider this line 1 upgrade!")
      
     if((keeble.hits(mouseX,mouseY)) and (cLabel.value >= keebprice.value)):
      global keebon 
@@ -91,16 +82,15 @@ def onMousePress(mouseX,mouseY):
       cLabel.value += 1
       
 
-##this is attempt for making a list thatll take the avg cLabel value to make a cps value
-
-
+Label('upgrades bought=',70,45,font='orbitron',size=15)
 
 ##these are going to be for making the numbers nice and round i think
-
-
 rounded(cLabel.value)
 
 rounded(granprice.value)
 rounded(keebprice.value)
+
+
+
 
 cmu_graphics.run()
